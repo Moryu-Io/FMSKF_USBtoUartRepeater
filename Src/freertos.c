@@ -26,7 +26,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
-
+#include "wrapper_main.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -122,11 +122,7 @@ void StartMainTask(void const * argument)
   MX_USB_DEVICE_Init();
 
   /* USER CODE BEGIN StartMainTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+  	  maintask_cpp();
   /* USER CODE END StartMainTask */
 }
 
@@ -140,11 +136,7 @@ void StartMainTask(void const * argument)
 void StartUSBCtrlTask(void const * argument)
 {
   /* USER CODE BEGIN StartUSBCtrlTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+	USBCtrltask_cpp();
   /* USER CODE END StartUSBCtrlTask */
 }
 
@@ -158,11 +150,7 @@ void StartUSBCtrlTask(void const * argument)
 void StartServoCtrlTask(void const * argument)
 {
   /* USER CODE BEGIN StartServoCtrlTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+	ServoCtrltask_cpp();
   /* USER CODE END StartServoCtrlTask */
 }
 
