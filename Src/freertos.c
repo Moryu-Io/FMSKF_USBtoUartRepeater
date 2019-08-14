@@ -96,7 +96,7 @@ void MX_FREERTOS_Init(void) {
   MainTaskHandle = osThreadCreate(osThread(MainTask), NULL);
 
   /* definition and creation of USBCtrlTask */
-  osThreadDef(USBCtrlTask, StartUSBCtrlTask, osPriorityIdle, 0, 512);
+  osThreadDef(USBCtrlTask, StartUSBCtrlTask, osPriorityIdle, 0, 1024);
   USBCtrlTaskHandle = osThreadCreate(osThread(USBCtrlTask), NULL);
 
   /* definition and creation of ServoCtrlTask */

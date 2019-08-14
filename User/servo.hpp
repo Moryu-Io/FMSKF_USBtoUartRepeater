@@ -13,6 +13,7 @@
 
 class Servo{
 public:
+	Servo(){};
 	Servo(uint8_t _id):
 		u8_ID_(_id){};
 
