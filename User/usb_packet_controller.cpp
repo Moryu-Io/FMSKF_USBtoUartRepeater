@@ -29,7 +29,6 @@ void USBPacketController::USBRXringbuf_push(uint8_t* _buf, uint16_t* len){
  */
 void USBPacketController::USBRXdataprocess(){
 	if(flag_USBRXbuf == true){
-
 		int _buf_index = 0;
 		while(_buf_index < (int16_t)USBRXringbuf.size()-3){
 			if((USBRXringbuf[_buf_index] == 0x55) & (USBRXringbuf[_buf_index+1] == 0x55)){
@@ -43,9 +42,9 @@ void USBPacketController::USBRXdataprocess(){
 					for(int i=0;i<_pklength;i++){
 						rx_packet_[i] = USBRXringbuf.pull();
 					}
-					LED::TurnOn(LED::GREEN);
 					// debug用
-					CDC_Transmit_FS(rx_packet_, _pklength);
+					//CDC_Transmit_FS(rx_packet_, _pklength);
+					p_servoserial_->USBRXpacketprocess(rx_packet_, _pklength);
 
 
 				}else{

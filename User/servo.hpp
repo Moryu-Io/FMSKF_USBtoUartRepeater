@@ -14,8 +14,8 @@
 class Servo{
 public:
 	Servo(){};
-	Servo(uint8_t _id):
-		u8_ID_(_id){};
+	Servo(uint8_t _id, USART_TypeDef* _pusart):
+		u8_ID_(_id), p_usart_(_pusart){};
 
 	enum MotionStatus{
 		INITIALIZE,
@@ -44,13 +44,14 @@ public:
 
 private:
 	uint8_t u8_ID_;
+	USART_TypeDef* p_usart_;
 
 	MotionStatus Motion_Status_ = INITIALIZE;
 	ErrorStatus  Error_Status_  = NO_ERROR;
 
 
-	float fl_now_angle_deg_;
-	float fl_tgt_angle_deg_;
+	float fl_now_angle_deg_ = 0.0f;
+	float fl_tgt_angle_deg_ = 0.0f;
 
 	float fl_upper_limit_angle_deg_ =  360.0f;
 	float fl_lower_limit_angle_deg_ = -360.0f;

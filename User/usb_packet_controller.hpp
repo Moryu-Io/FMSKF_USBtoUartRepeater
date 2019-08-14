@@ -11,11 +11,12 @@
 #include "DKS_CircularBuffer.h"
 #include "stm32l4xx_hal.h"
 #include "const_param_sys.hpp"
+#include "servo_serial.hpp"
 
 class USBPacketController{
 public:
 	USBPacketController():
-		flag_USBRXbuf(false),flag_USBTXbuf(false),rx_packet_() {}
+		p_servoserial_(),flag_USBRXbuf(false),flag_USBTXbuf(false),rx_packet_() {}
 	~USBPacketController(){}
 
 	//void setFlagUSBRXbuf(bool _f) { flag_USBRXbuf = _f; };
@@ -27,8 +28,11 @@ public:
 
 	void USBRXdataprocess();
 
+	void setpointer_servo_serial(Servo_Serial* _p){ p_servoserial_ = _p; };
+
 private:
 	DKS::CircularBuffer<uint8_t, 64> USBRXringbuf;
+	Servo_Serial* p_servoserial_;
 
 	bool flag_USBRXbuf;
 	bool flag_USBTXbuf;

@@ -14,7 +14,7 @@
 class KRS_servo : Servo{
 public:
 	KRS_servo(){};
-	KRS_servo(uint8_t _id)  : Servo(_id){};
+	KRS_servo(uint8_t _id, USART_TypeDef* _pusart) : Servo(_id, _pusart){};
 
 private:
 

@@ -22,11 +22,15 @@ private:
 	static Lx16a Wrist_Yaw_Servo;
 	static Lx16a Wrist_Pitch_Servo;
 
+
+
 public:
 	Servo_Serial(){};
 	~Servo_Serial(){};
 
+
 	void USBRXpacketprocess(uint8_t* _pk, uint16_t _len);
+	void Communication_with_usart2();
 
 };
 

@@ -11,12 +11,14 @@
 #include "usb_packet_controller.hpp"
 #include "LED.hpp"
 #include "usbd_cdc_if.h"
-
+#include "servo_serial.hpp"
 
 USBPacketController usb_packet_ctrl;
+Servo_Serial servo_serial_ctrl;
 
 void maintask_cpp(void){
 	TickType_t _xLastExecutionTime = xTaskGetTickCount();
+	usb_packet_ctrl.setpointer_servo_serial(&servo_serial_ctrl);
 
 	while(1){
 		osDelayUntil(&_xLastExecutionTime, u16_MAIN_TASK_PERIOD_MS);

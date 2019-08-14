@@ -9,12 +9,12 @@
 #include "servo_serial.hpp"
 
 
-KRS_servo Servo_Serial::Shoulder_Yaw_Servo(u8_SHOULDER_YAW_SERVO_ID);
-Lx16a Servo_Serial::Shoulder_Pitch_Servo(u8_SHOULDER_PITCH_SERVO_ID);
-Lx16a Servo_Serial::Shoulder_Pitch_Servo_sub(u8_SHOULDER_PITCH_SERVO_SUB_ID);
-Lx16a Servo_Serial::Elbow_Pitch_Servo(u8_ELBOW_PITCH_SERVO_ID);
-Lx16a Servo_Serial::Wrist_Yaw_Servo(u8_WRIST_YAW_SERVO_ID);
-Lx16a Servo_Serial::Wrist_Pitch_Servo(u8_WRIST_PITCH_SERVO_IO);
+KRS_servo Servo_Serial::Shoulder_Yaw_Servo(u8_SHOULDER_YAW_SERVO_ID, USART1);
+Lx16a Servo_Serial::Shoulder_Pitch_Servo(u8_SHOULDER_PITCH_SERVO_ID, USART2);
+Lx16a Servo_Serial::Shoulder_Pitch_Servo_sub(u8_SHOULDER_PITCH_SERVO_SUB_ID, USART2);
+Lx16a Servo_Serial::Elbow_Pitch_Servo(u8_ELBOW_PITCH_SERVO_ID, USART2);
+Lx16a Servo_Serial::Wrist_Yaw_Servo(u8_WRIST_YAW_SERVO_ID, USART2);
+Lx16a Servo_Serial::Wrist_Pitch_Servo(u8_WRIST_PITCH_SERVO_ID, USART2);
 
 /**
  *
@@ -24,9 +24,31 @@ Lx16a Servo_Serial::Wrist_Pitch_Servo(u8_WRIST_PITCH_SERVO_IO);
 void Servo_Serial::USBRXpacketprocess(uint8_t* _pk, uint16_t _len){
 	switch(_pk[3]){
 	case u8_SHOULDER_YAW_SERVO_ID:
+
 		break;
 	case u8_SHOULDER_PITCH_SERVO_ID:
+		Shoulder_Pitch_Servo.creat_packet_from_usbpacket(_pk, _len);
+		break;
+	case u8_SHOULDER_PITCH_SERVO_SUB_ID:
+		Shoulder_Pitch_Servo_sub.creat_packet_from_usbpacket(_pk, _len);
+		break;
+	case u8_ELBOW_PITCH_SERVO_ID:
+		Elbow_Pitch_Servo.creat_packet_from_usbpacket(_pk, _len);
+		break;
+	case u8_WRIST_YAW_SERVO_ID:
+		Wrist_Yaw_Servo.creat_packet_from_usbpacket(_pk, _len);
+		break;
+	case u8_WRIST_PITCH_SERVO_ID:
+		Wrist_Pitch_Servo.creat_packet_from_usbpacket(_pk, _len);
 		break;
 
+
+
 	}
+}
+
+void Servo_Serial::Communication_with_usart2(){
+	Shoulder_Pitch_Servo.communication_with_servo();
+
+
 }
