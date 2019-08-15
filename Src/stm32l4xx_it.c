@@ -205,6 +205,8 @@ void DMA1_Channel4_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Channel4_IRQn 0 */
 	if(LL_DMA_IsActiveFlag_TC4(DMA1)){
 		u8_DMA1CH4_isRunning = 0;
+		LL_USART_DisableDMAReq_TX(USART1);
+		LL_DMA_DisableIT_TC(DMA1, LL_DMA_CHANNEL_4);
 		LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_4);
 		LL_DMA_ClearFlag_TC4(DMA1);
 	}
@@ -223,6 +225,8 @@ void DMA1_Channel5_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Channel5_IRQn 0 */
 	if(LL_DMA_IsActiveFlag_TC5(DMA1)){
 		u8_DMA1CH5_isRunning = 0;
+		LL_USART_DisableDMAReq_RX(USART1);
+		LL_DMA_DisableIT_TC(DMA1, LL_DMA_CHANNEL_5);
 		LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_5);
 		LL_DMA_ClearFlag_TC5(DMA1);
 	}

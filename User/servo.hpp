@@ -41,9 +41,11 @@ public:
 	float get_now_angle() {return fl_now_angle_deg_;};
 	float get_tgt_angle() {return fl_tgt_angle_deg_;};
 
+protected:
+	uint8_t u8_ID_;
 
 private:
-	uint8_t u8_ID_;
+
 	USART_TypeDef* p_usart_;
 
 	MotionStatus Motion_Status_ = INITIALIZE;
