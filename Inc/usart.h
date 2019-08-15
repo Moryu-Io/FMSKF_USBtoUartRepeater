@@ -39,7 +39,7 @@ void MX_USART2_UART_Init(void);
 void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void Link_USART_and_DMA(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

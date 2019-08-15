@@ -16,7 +16,7 @@
 class USBPacketController{
 public:
 	USBPacketController():
-		p_servoserial_(),flag_USBRXbuf(false),flag_USBTXbuf(false),rx_packet_() {}
+		p_servoserial_(),flag_USBRXbuf(false),flag_USBTXbuf(false),rx_packet_(),tx_packet_(),tx_packet_len_() {}
 	~USBPacketController(){}
 
 	//void setFlagUSBRXbuf(bool _f) { flag_USBRXbuf = _f; };
@@ -25,8 +25,10 @@ public:
 	bool checkFlagUSBTXbuf(){ return flag_USBTXbuf; };
 
 	void USBRXringbuf_push(uint8_t* _buf, uint16_t* len);
+	void USBTXbuf_push(uint8_t* _buf, uint16_t &_len);
 
 	void USBRXdataprocess();
+	void USBTXdataprocess();
 
 	void setpointer_servo_serial(Servo_Serial* _p){ p_servoserial_ = _p; };
 
@@ -38,6 +40,8 @@ private:
 	bool flag_USBTXbuf;
 
 	uint8_t rx_packet_[u16_USBRX_PACKET_MAX_LENGTH];
+	uint8_t tx_packet_[u16_USBTX_PACKET_MAX_LENGTH];
+	uint16_t tx_packet_len_;
 
 };
 

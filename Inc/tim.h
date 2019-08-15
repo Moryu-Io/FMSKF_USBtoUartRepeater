@@ -35,6 +35,7 @@
 /* USER CODE END Private defines */
 
 void MX_TIM2_Init(void);
+void MX_TIM16_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 

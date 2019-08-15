@@ -16,6 +16,7 @@
   *
   ******************************************************************************
   */
+
 /* Includes ------------------------------------------------------------------*/
 #include "dma.h"
 
@@ -28,6 +29,12 @@
 /*----------------------------------------------------------------------------*/
 
 /* USER CODE BEGIN 1 */
+uint8_t u8_DMA1CH2_isRunning = 0;
+uint8_t u8_DMA1CH3_isRunning = 0;
+uint8_t u8_DMA1CH4_isRunning = 0;
+uint8_t u8_DMA1CH5_isRunning = 0;
+uint8_t u8_DMA1CH6_isRunning = 0;
+uint8_t u8_DMA1CH7_isRunning = 0;
 
 /* USER CODE END 1 */
 
@@ -36,6 +43,7 @@
   */
 void MX_DMA_Init(void) 
 {
+
   /* Init with LL driver */
   /* DMA controller clock enable */
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_DMA1);

@@ -31,6 +31,7 @@ public:
 
 	void USBRXpacketprocess(uint8_t* _pk, uint16_t _len);
 	void Communication_with_usart2();
+	void getAllServoRXPacket(uint8_t* _pk, uint16_t &_len);
 
 };
 

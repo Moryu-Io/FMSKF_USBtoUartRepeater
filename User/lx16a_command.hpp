@@ -18,6 +18,8 @@ struct COMMAND{
 	uint8_t rLen;
 };
 
+static constexpr COMMAND COMMAND_NONE	= {0,0,0};
+
 static constexpr COMMAND MOVE_TIME_WRITE			= {1, 7, 0};
 static constexpr COMMAND MOVE_TIME_READ 				= {2, 3, 7};
 static constexpr COMMAND MOVE_TIME_WAIT_WRITE	= {7, 7, 0};

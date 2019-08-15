@@ -40,7 +40,12 @@
 void MX_DMA_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+extern uint8_t u8_DMA1CH2_isRunning;
+extern uint8_t u8_DMA1CH3_isRunning;
+extern uint8_t u8_DMA1CH4_isRunning;
+extern uint8_t u8_DMA1CH5_isRunning;
+extern uint8_t u8_DMA1CH6_isRunning;
+extern uint8_t u8_DMA1CH7_isRunning;
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

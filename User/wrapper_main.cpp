@@ -32,10 +32,8 @@ void USBCtrltask_cpp(void){
 
 	while(1){
 		osDelayUntil(&_xLastExecutionTime, u16_USBCTRL_TASK_PERIOD_MS);
-		//LED::TurnOn(LED::RED);
 		// 新たな受信バッファが追加されたとき
 		if(usb_packet_ctrl.checkFlagUSBRXbuf() == true){
-			LED::TurnOn(LED::RED);
 			usb_packet_ctrl.USBRXdataprocess();
 
 		}else{
@@ -44,7 +42,7 @@ void USBCtrltask_cpp(void){
 
 		// 新たな送信バッファが追加されたとき
 		if(usb_packet_ctrl.checkFlagUSBTXbuf() == true){
-
+			usb_packet_ctrl.USBTXdataprocess();
 		}else{
 
 		}
@@ -58,10 +56,17 @@ void USBCtrltask_cpp(void){
 
 void ServoCtrltask_cpp(void){
 	TickType_t _xLastExecutionTime = xTaskGetTickCount();
+	uint8_t _servosRXpackets[u16_USBTX_PACKET_MAX_LENGTH] = {};
+	uint16_t _servosRXpackets_len = 0;
 
 	while(1){
 		osDelayUntil(&_xLastExecutionTime, u16_SERVOCTRL_TASK_PERIOD_MS);
-
+		servo_serial_ctrl.Communication_with_usart2();
+		servo_serial_ctrl.getAllServoRXPacket(_servosRXpackets, _servosRXpackets_len);
+		if(_servosRXpackets_len > 0){
+			//サーボからの受信データ有
+			usb_packet_ctrl.USBTXbuf_push(_servosRXpackets, _servosRXpackets_len);
+		}
 	}
 
 }

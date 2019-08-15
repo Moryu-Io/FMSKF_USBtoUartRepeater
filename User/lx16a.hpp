@@ -17,7 +17,8 @@ class Lx16a : Servo{
 public:
 	Lx16a(){};
 	Lx16a(uint8_t _id, USART_TypeDef* _pusart) : Servo(_id, _pusart),
-			next_tx_packet_(),rx_packet_(), next_tx_packet_len_(0),rx_packet_len_(0),next_rx_flag_(false){};
+			next_tx_packet_(),rx_packet_(), next_tx_packet_len_(0),rx_packet_len_(0),next_rx_flag_(false),
+			next_cmd_(LX16ACOMMAND::COMMAND_NONE){};
 
 	void creat_packet_move(float _tgt_pos_deg, uint16_t _move_time_ms);
 	void creat_packet_read(LX16ACOMMAND::COMMAND _cmd);
@@ -35,6 +36,8 @@ private:
 	uint16_t next_tx_packet_len_;
 	uint16_t rx_packet_len_;
 	bool next_rx_flag_;
+
+	LX16ACOMMAND::COMMAND next_cmd_;
 
 
 public:
