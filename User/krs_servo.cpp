@@ -13,6 +13,7 @@
 #include "usbd_cdc_if.h"
 #include "LED.hpp"
 #include "dma.h"
+#include "const_param_sys.hpp"
 
 
 void KRS_servo::creat_packet_from_usbpacket(uint8_t* _usbpk, uint16_t _len){
@@ -103,6 +104,8 @@ void KRS_servo::get_rx_packet(uint8_t* _rxpk, uint16_t &_len){
 
 void KRS_servo::conv_LX16AtoICS36_MOVE_TIME_WRITE(uint8_t* _usbpk){
 	uint16_t _pos = (uint16_t)_usbpk[5] | ((uint16_t)_usbpk[6] << 8);
+	int16_t _s16_pos = (int16_t)_pos - 500;
+	_pos = (uint16_t) ((float)_s16_pos * LX16AtoICS36_POS_RATIO +7500.0f);
 
 	next_tx_packet_[0] =  ICS_COMMAND::MOVE_POS_WRITE.Cmd | u8_ID_;
 	next_tx_packet_[1] = (uint8_t)((_pos >> 7)&0x7F);

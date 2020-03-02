@@ -8,9 +8,11 @@
 #include "wrapper_usb_if.hpp"
 #include "DKS_CircularBuffer.h"
 #include "usb_packet_controller.hpp"
+#include "LED.hpp"
 
 extern USBPacketController usb_packet_ctrl;
 
 void toRingBufPush(uint8_t* _buf, uint16_t* len){
+	LED::TurnOn(LED::RED);
 	usb_packet_ctrl.USBRXringbuf_push(_buf, len);
 }

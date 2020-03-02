@@ -33,7 +33,7 @@ public:
 	void setpointer_servo_serial(Servo_Serial* _p){ p_servoserial_ = _p; };
 
 private:
-	DKS::CircularBuffer<uint8_t, 64> USBRXringbuf;
+	DKS::CircularBuffer<uint8_t, 256> USBRXringbuf;
 	Servo_Serial* p_servoserial_;
 
 	bool flag_USBRXbuf;
